@@ -15,16 +15,14 @@ object HbaseTest extends App with ResourceAware {
   //https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-using-spark-query-hbase
   //Or suggestion from https://github.com/nerdammer/spark-hbase-connector/blob/master/README.md
   // sparkContext.hadoopConfiguration.set("spark.hbase.host", "thehost")
-  val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("MyWikipediaRanking")
-  val sc: SparkContext = new SparkContext(conf)
-  sc.stop()
- /* val spark = SparkSession
+
+ val spark = SparkSession
     .builder
     .appName("Spark Hbase Test")
     .config("spark.master", "local[8]")
     .getOrCreate()
- */
-  //spark.sparkContext.hadoopConfiguration.addResource(resourceFromClasspath("hbase-site.xml"))
+
+  spark.sparkContext.hadoopConfiguration.addResource(resourceFromClasspath("hbase-site.xml"))
   /*
   import spark.sqlContext.implicits._
   //define a catalog for the Contacts table you created in HBase:
