@@ -33,5 +33,8 @@ COPY conf/prometheus.yaml /etc/metrics/conf
 #Copy  my projects apps
 RUN mkdir -p /opt/spark/abelash-apps
 COPY jars /opt/spark/abelash-apps
+#COPY ../../../target/SparkHbaseTest-1.0-SNAPSHOT.jar /opt/spark/abelash-apps
+#Copy Hbase conf to Spark
+#COPY conf/hbase-site.xml /opt/spark/conf
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
