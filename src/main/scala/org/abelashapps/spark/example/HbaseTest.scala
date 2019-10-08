@@ -4,18 +4,28 @@ import org.apache.spark.sql.{SQLContext, _}
 import org.apache.spark.sql.execution.datasources.hbase._
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.hadoop.conf.Configuration
 /**
  * Hello world!
  *
  */
-object HbaseTest extends App {
+object HbaseTest extends App with ResourceAware {
   println( "Hello World!" )
+  //println(resourceFromClasspath("hbase-site.xml"))
   //https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-using-spark-query-hbase
-  val spark = SparkSession
+  //Or suggestion from https://github.com/nerdammer/spark-hbase-connector/blob/master/README.md
+  // sparkContext.hadoopConfiguration.set("spark.hbase.host", "thehost")
+  val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("MyWikipediaRanking")
+  val sc: SparkContext = new SparkContext(conf)
+  sc.stop()
+ /* val spark = SparkSession
     .builder
     .appName("Spark Hbase Test")
     .config("spark.master", "local[8]")
     .getOrCreate()
+ */
+  //spark.sparkContext.hadoopConfiguration.addResource(resourceFromClasspath("hbase-site.xml"))
+  /*
   import spark.sqlContext.implicits._
   //define a catalog for the Contacts table you created in HBase:
   def catalog = s"""{
@@ -37,12 +47,15 @@ object HbaseTest extends App {
       .format("org.apache.spark.sql.execution.datasources.hbase")
       .load()
    }
+
   val df = withCatalog(catalog)
   df.show()
   df.createTempView("contacts")
   val query = spark.sqlContext.sql("select personalName, officeAddress from contacts")
   query.show()
 
+
+   */
   /*
   //Insert new data
   case class ContactRecord(
