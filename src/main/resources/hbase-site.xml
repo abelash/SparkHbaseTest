@@ -20,51 +20,42 @@
  * limitations under the License.
  */
 -->
+<!-- Standalone-->
+<!--configuration>
+<property><name>hbase.master.info.port</name><value>16010</value></property>
+<property><name>DIR</name><value>/etc/hbase</value></property>
+<property><name>hbase.cluster.distributed</name><value>false</value></property>
+<property><name>hbase.master.port</name><value>16000</value></property>
+<property><name>hbase.zookeeper.property.dataDir</name><value>/zookeeper-data</value></property>
+<property><name>hbase.zookeeper.property.clientPort</name><value>2181</value></property>
+<property><name>hbase.zookeeper.leaderport</name><value>3888</value></property>
+<property><name>hbase.zookeeper.quorum</name><value>hbase</value></property>
+<property><name>hbase.regionserver.port</name><value>16020</value></property>
+<property><name>hbase.regionserver.info.port</name><value>16030</value></property>
+<property><name>hbase.zookeeper.peerport</name><value>2888</value></property>
+<property><name>hbase.rootdir</name><value>hdfs://namenode:9000/hbase</value></property>
+</configuration-->
+
+<!--Distributed local-->
 <configuration>
-	<property>
-      <name>hbase.rootdir</name>
-      <value>hdfs://localhost:8030/hbase</value>
-   </property>
-
-   <property>
-      <name>hbase.zookeeper.property.dataDir</name>
-      <value>/home/abelash/zookeeper</value>
-   </property>
-
-   <property>
-     <name>hbase.cluster.distributed</name>
-     <value>true</value>
-   </property>
-  <property>
-    <name>hbase.security.authentication</name>
-    <value>simple</value>
-  </property>
-  <property>
-    <name>hbase.security.authorization</name>
-   <value>true</value>
-  </property>
-  <property>
-    <name>hbase.coprocessor.master.classes</name>
-    <value>org.apache.hadoop.hbase.security.access.AccessController</value>
-  </property>
-  <property>
-    <name>hbase.coprocessor.region.classes</name>
-    <value>org.apache.hadoop.hbase.security.access.AccessController</value>
-  </property>   
-  <property>
-    <name>hbase.ipc.server.fallback-to-simple-auth-allowed</name>
-    <value>true</value>
-  </property>  
-  <property>
-    <name>hbase.ipc.client.fallback-to-simple-auth-allowed</name>
-    <value>true</value>
-  </property>  
-  <property>
-    <name>hbase.rootdir</name>
-    <value>hdfs://localhost:9000/hbase</value>
-  </property>
- <property>
-  <name>hbase.unsafe.stream.capability.enforce</name>
-  <value>false</value>
-</property>  
+    <property><name>hbase.master.info.port</name><value>16010</value></property>
+    <property><name>DIR</name><value>/etc/hbase</value></property>
+    <property><name>hbase.cluster.distributed</name><value>true</value></property>
+    <property><name>hbase.master.port</name><value>16000</value></property>
+    <property><name>hbase.zookeeper.quorum</name><value>zoo</value></property>
+    <property><name>hbase.master</name><value>hbase-master:16000</value></property>
+    <property><name>hbase.regionserver.port</name><value>16020</value></property>
+    <property><name>hbase.regionserver.info.port</name><value>16030</value></property>
+    <property><name>hbase.master.hostname</name><value>hbase-master</value></property>
+    <property><name>hbase.rootdir</name><value>hdfs://namenode:9000/hbase</value></property>
+    <property><name>hbase.master.info.port</name><value>16010</value></property>
+    <property><name>DIR</name><value>/etc/hbase</value></property>
+    <property><name>hbase.cluster.distributed</name><value>true</value></property>
+    <property><name>hbase.master.port</name><value>16000</value></property>
+    <property><name>hbase.zookeeper.quorum</name><value>zoo</value></property>
+    <property><name>hbase.master</name><value>hbase-master:16000</value></property>
+    <property><name>hbase.regionserver.port</name><value>16020</value></property>
+    <property><name>hbase.regionserver.info.port</name><value>16030</value></property>
+    <property><name>hbase.master.hostname</name><value>hbase-master</value></property>
+    <property><name>hbase.rootdir</name><value>hdfs://namenode:9000/hbase</value></property>
 </configuration>
