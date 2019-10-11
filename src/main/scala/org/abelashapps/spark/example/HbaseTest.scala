@@ -21,20 +21,24 @@ object HbaseTest extends App with ResourceAware {
   //https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-using-spark-query-hbase
   //Or suggestion from https://github.com/nerdammer/spark-hbase-connector/blob/master/README.md
   // sparkContext.hadoopConfiguration.set("spark.hbase.host", "thehost")
-  println(resourceFromClasspath("hbase-site.xml"))
+  //println(resourceFromClasspath("hbase-site.xml"))
  val spark = SparkSession
     .builder
     .appName("Spark Hbase Test")
     .config("spark.master", "local[8]")
-    //.config("spark.driver.extraClassPath",resourceFromClasspath("hbase-site.xml"))
-    //.config("spark.files","D:\\hbase-1.2.6\\conf\\hbase-site.xml"/*resourceFromClasspath("hbase-site.xml")*/)
+    //NOT WORKING .config("spark.driver.extraClassPath","D:\\hbase-1.2.6\\conf")
+    //NOT WORKING  .config("spark.files","D:\\hbase-1.2.6\\conf\\hbase-site.xml"/*resourceFromClasspath("hbase-site.xml")*/)
     .getOrCreate()
-
   spark.sparkContext.setLogLevel("ERROR")
-  //spark.sparkContext.hadoopConfiguration.set("spark.hbase.host", "localhost")
-  //spark.sparkContext.hadoopConfiguration.set("spark.hbase.port", "16000")
   println("spark.files = " + spark.sparkContext.getConf.getOption("spark.files"))
+ /* ALSO NOT USEFULL
+  spark.sparkContext.hadoopConfiguration.set("spark.hbase.host", "localhost")
+  spark.sparkContext.hadoopConfiguration.set("spark.hbase.port", "17000")
+  spark.sparkContext.hadoopConfiguration.set("spark.hbase.regionserver.port", "17020")
 
+  spark.sparkContext.hadoopConfiguration.set("hbase.host", "localhost")
+  spark.sparkContext.hadoopConfiguration.set("hbase.port", "17000")
+  spark.sparkContext.hadoopConfiguration.set("hbase.regionserver.port", "17020") */
 
  //println(resourceFromClasspath("hbase-site.xml"))
  //Spark Config
@@ -46,7 +50,6 @@ object HbaseTest extends App with ResourceAware {
   //while (iterator.hasNext)   println(iterator.next())
  //val outXML  = new FileOutputStream("hconf.xml")
  //hadoopConf.writeXml(outXML)
-
 
   import spark.sqlContext.implicits._
   //define a catalog for the Contacts table you created in HBase:
